@@ -20,7 +20,7 @@ namespace Business.Concrete
 
         public List<Car> GetAll()
         {
-            throw new NotImplementedException();
+            return _carDal.GetAll();
         }
     }
 }
