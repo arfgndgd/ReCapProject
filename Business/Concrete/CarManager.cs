@@ -39,32 +39,32 @@ namespace Business.Concrete
             _carDal.Delete(car);
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
             return _carDal.GetAll();
         }
 
-        public List<Car> GetByDailyPrice(double min, double max)
+        public IDataResult<List<Car>> GetByDailyPrice(double min, double max)
         {
             return _carDal.GetAll(c=>c.DailyPrice >= min && c.DailyPrice <= max);
         }
 
-        public Car GetById(int carId)
+        public IDataResult<Car> GetById(int carId)
         {
             return _carDal.Get(c=>c.CarID == carId);
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
             return _carDal.GetCarDetails();
         }
 
-        public List<Car> GetCarsByBrandId(int id)
+        public IDataResult<List<Car>> GetCarsByBrandId(int id)
         {
-            return _carDal.GetAll(c=>c.BrandID == id);
+            return new SuccessDataResult (_carDal.GetAll(c=>c.BrandID == id));
         }
 
-        public List<Car> GetCarsByColorId(int id)
+        public IDataResult<List<Car>> GetCarsByColorId(int id)
         {
             return _carDal.GetAll(c => c.ColorID == id);
         }
