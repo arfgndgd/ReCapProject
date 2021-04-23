@@ -34,9 +34,10 @@ namespace Business.Concrete
             }
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             _carDal.Delete(car);
+            return new SuccessResult(Messages.CarDeleted);
         }
 
         public IDataResult<List<Car>> GetAll()
@@ -74,9 +75,10 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>> (_carDal.GetAll(c => c.ColorID == id));
         }
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
             _carDal.Update(car);
+            return new SuccessResult(Messages.CarModified);
         }
     }
 }
