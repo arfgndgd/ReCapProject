@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -25,10 +26,11 @@ namespace Business.Concrete
             if (car.DailyPrice >0)
             {
                 _carDal.Add(car);
+                return new SuccessResult(Messages.CarAdded);
             }
             else
             {
-                Console.WriteLine("Günlük kiralama fiyatı 0'dan büyük olmalı");
+                return new ErrorResult(Messages.DailyPriceInvalid);
             }
         }
 
