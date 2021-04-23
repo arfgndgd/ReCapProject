@@ -29,5 +29,10 @@ namespace Business.Constants
         internal static string CustomerDeleted;
         internal static string CustomerModified;
         internal static string CustomerListed;
+        internal static string RentAdded;
+        internal static string RentModified;
+        internal static string RentDeleted;
+        internal static string RentalListed;
+        internal static string UserAdded;
     }
 }
