@@ -34,5 +34,8 @@ namespace Business.Constants
         internal static string RentDeleted;
         internal static string RentalListed;
         internal static string UserAdded;
+        internal static string UserModified;
+        internal static string UserDeleted;
+        internal static string UserListed;
     }
 }
