@@ -18,7 +18,38 @@ namespace ConsoleUI
             //GetCarDetail();
             //AddNewCar();
             //UpdateCar();
-            AddNewUser();
+            //AddNewUser();
+
+            AddNewRental();
+
+        }
+
+        private static void AddNewRental()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var addedRental = rentalManager.Add(new Rental
+            {
+                RentalID = 1,
+                CarID = 1,
+                CustomerID = 1,
+                RentDate = new DateTime(2021, 4, 24)
+            });
+            if (addedRental.Success == true)
+            {
+                Console.WriteLine(addedRental.Message);
+            }
+            else
+            {
+                Console.WriteLine(addedRental.Message);
+            }
+            var result = rentalManager.GetAll();
+            if (result.Success == true)
+            {
+                foreach (var rent in result.Data)
+                {
+                    Console.WriteLine(rent.CarID + " / " +rent.CustomerID + " / " +rent.RentalID + " / " +rent.RentDate + " / " +rent.ReturnDate);
+                }
+            }
         }
 
         private static UserManager AddNewUser()
@@ -58,8 +89,9 @@ namespace ConsoleUI
             {
                 foreach (var car in result.Data)
                 {
-                    Console.WriteLine(car.CarID + " / " + car.BrandName + " / " + car.ColorName + " / " + car.DailyPrice + "  "  + car.Description);
+                    Console.WriteLine(car.CarID + " / " + car.BrandName + " / " + car.ColorName + " / " + car.DailyPrice + " / "  + car.Description);
                 }
+                Console.WriteLine(result.Message);
             }
             else
             {

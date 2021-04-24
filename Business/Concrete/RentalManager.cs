@@ -22,8 +22,14 @@ namespace Business.Concrete
 
         public IResult Add(Rental rental)
         {
-            _rentalDal.Add(rental);
+            //Kiralama aşamasında istenen araç henüz kiralamadan dönmeddi ise..
+            var result = _rentalDal.GetAll(c => c.CarID == rental.CarID && !c.ReturnDate.HasValue);
+            if (!result.Any())
+            {
+                _rentalDal.Add(rental);
             return new SuccessResult(Messages.RentAdded);
+            }
+            return new ErrorResult(Messages.RentNotComeBack);
         }
 
         public IResult Delete(Rental rental)

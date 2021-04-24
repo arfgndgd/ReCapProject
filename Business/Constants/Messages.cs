@@ -30,6 +30,7 @@ namespace Business.Constants
         public static string CustomerModified = "Müşteri güncellendi";
         public static string CustomerListed = "Müşteriler listelendi";
         public static string RentAdded = "Kiralama eklendi";
+        public static string RentNotComeBack = "Araç henüz kiralamadan dönmedi";
         public static string RentModified = "Kiralama güncellendi";
         public static string RentDeleted = "Kiralama silindi";
         public static string RentalListed = "Kiralamalar listelendi";
@@ -37,5 +38,7 @@ namespace Business.Constants
         public static string UserModified = "Kullanıcı güncellendi";
         public static string UserDeleted = "Kullanıcı silindi";
         public static string UserListed = "Kullanıcılar listelendi";
+        public static string CarDetails = "Araç detayları listelendi";
+        
     }
 }
