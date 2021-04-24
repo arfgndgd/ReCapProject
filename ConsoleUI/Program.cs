@@ -19,9 +19,25 @@ namespace ConsoleUI
             //AddNewCar();
             //UpdateCar();
             //AddNewUser();
+            //AddNewCustomer();
+            //AddNewRental();
 
-            AddNewRental();
+        }
 
+        private static CustomerManager AddNewCustomer()
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            var addedCustomer = customerManager.Add(new Customer{CustomerID = 2,UserID = 2,CompanyName = "XCompany"});
+            Console.WriteLine(addedCustomer.Message);
+            var result = customerManager.GetAll();
+            if (result.Success == true)
+            {
+                foreach (var customer in result.Data)
+                {
+                    Console.WriteLine(customer.CustomerID + " / " + customer.UserID + " / " + customer.CompanyName);
+                }
+            }
+            return customerManager;
         }
 
         private static void AddNewRental()
@@ -55,14 +71,14 @@ namespace ConsoleUI
         private static UserManager AddNewUser()
         {
             UserManager userManager = new UserManager(new EfUserDal());
-            var addedResult= userManager.Add(new User { UserID = 1, FirstName = "Arif", LastName = "Gündoğdu", Email = "gundogduarif4@gmail.com", Password = "123" });
-            Console.WriteLine(addedResult.Message);
+            var addedUser= userManager.Add(new User { UserID = 1, FirstName = "Arif", LastName = "Gündoğdu", Email = "gundogduarif4@gmail.com", Password = "123" });
+            Console.WriteLine(addedUser.Message);
             var result = userManager.GetAll();
             if (result.Success == true)
             {
                 foreach (var user in result.Data)
                 {
-                    Console.WriteLine(user.UserID + " / " + user.FirstName + " / " + user.LastName + " / " + user.Email + "  " + user.Password);
+                    Console.WriteLine(user.UserID + " / " +user.FirstName + " / " + user.LastName + " / " + user.Email + "  " + user.Password);
                 }
             }
             return userManager;
