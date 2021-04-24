@@ -25,17 +25,17 @@ namespace Business.Constants
         public static string ColorModified = "Renk güncellendi";
         public static string CarModified = "Araç güncellendi";
         public static string CarDeleted = "Araç silindi";
-        internal static string CustomerAdded;
-        internal static string CustomerDeleted;
-        internal static string CustomerModified;
-        internal static string CustomerListed;
-        internal static string RentAdded;
-        internal static string RentModified;
-        internal static string RentDeleted;
-        internal static string RentalListed;
-        internal static string UserAdded;
-        internal static string UserModified;
-        internal static string UserDeleted;
-        internal static string UserListed;
+        public static string CustomerAdded = "Müşteri eklendi";
+        public static string CustomerDeleted = "Müşteri silindi";
+        public static string CustomerModified = "Müşteri güncellendi";
+        public static string CustomerListed = "Müşteriler listelendi";
+        public static string RentAdded = "Kiralama eklendi";
+        public static string RentModified = "Kiralama güncellendi";
+        public static string RentDeleted = "Kiralama silindi";
+        public static string RentalListed = "Kiralamalar listelendi";
+        public static string UserAdded = "Kullanıcı eklendi";
+        public static string UserModified = "Kullanıcı güncellendi";
+        public static string UserDeleted = "Kullanıcı silindi";
+        public static string UserListed = "Kullanıcılar listelendi";
     }
 }
