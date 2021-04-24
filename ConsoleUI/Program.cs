@@ -1,8 +1,11 @@
 ﻿using Business.Concrete;
+using Core.Utilities.Results;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
+using System.Collections.Generic;
 
 namespace ConsoleUI
 {
@@ -12,9 +15,26 @@ namespace ConsoleUI
         {
             //GetAllCar();
             //GetCarsByBrand();
-            GetCarDetail();
+            //GetCarDetail();
             //AddNewCar();
             //UpdateCar();
+            AddNewUser();
+        }
+
+        private static UserManager AddNewUser()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+            var addedResult= userManager.Add(new User { UserID = 1, FirstName = "Arif", LastName = "Gündoğdu", Email = "gundogduarif4@gmail.com", Password = "123" });
+            Console.WriteLine(addedResult.Message);
+            var result = userManager.GetAll();
+            if (result.Success == true)
+            {
+                foreach (var user in result.Data)
+                {
+                    Console.WriteLine(user.UserID + " / " + user.FirstName + " / " + user.LastName + " / " + user.Email + "  " + user.Password);
+                }
+            }
+            return userManager;
         }
 
         private static CarManager AddNewCar()
@@ -33,28 +53,47 @@ namespace ConsoleUI
         private static void GetCarDetail()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetCarDetails())
+            var result = carManager.GetCarDetails();
+            if (result.Success == true)
             {
-                Console.WriteLine(car.CarID + " / " + car.BrandName + " / " + car.ColorName + " / " + car.DailyPrice + " / "  + car.Description);
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(car.CarID + " / " + car.BrandName + " / " + car.ColorName + " / " + car.DailyPrice + "  "  + car.Description);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+            
         }
 
         private static void GetCarsByBrand()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetCarsByBrandId(2))
+            var result = carManager.GetCarsByBrandId(2);
+            if (result.Success == true)
             {
-                Console.WriteLine(car.CarID);
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(car.CarID);
+                }
             }
+            
         }
 
         private static void GetAllCar()
         {
             CarManager carManager = new CarManager(new InMemoryCarDal());
-            foreach (var car in carManager.GetAll())
+            var result = carManager.GetAll();
+            if (result.Success == true)
             {
-                Console.WriteLine(car.DailyPrice);
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(car.DailyPrice);
+                }
             }
+                
         }
     }
 }
