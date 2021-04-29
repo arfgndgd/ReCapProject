@@ -21,15 +21,10 @@ namespace Business.Concrete
 
         public IResult Add(Color color)
         {
-            if (color.ColorName.Length > 2)
-            {
+           
                 _colorDal.Add(color);
                 return new SuccessResult(Messages.ColorAdded);
-            }
-            else
-            {
-                return new ErrorResult(Messages.ColorNameInvalid);  
-            }
+        
         }
 
         public IResult Delete(Color color)
